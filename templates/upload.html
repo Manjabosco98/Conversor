@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Excel Converter</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <h1>Upload PDF and Convert to Excel</h1>
+    <form id="uploadForm" method="POST" enctype="multipart/form-data" action="{{ url_for('upload') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.file.label }}<br>
+            {{ form.file(id='fileInput') }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function() {
+            document.getElementById('uploadForm').submit();
+        });
+    </script>
+    {% if excel_filename %}
+        <p><a href="{{ url_for('download', excel_filename=excel_filename) }}">Download Excel</a></p>
+    {% endif %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
