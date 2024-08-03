@@ -10,7 +10,6 @@ from flask_frozen import Freezer
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '04b49f7c740b5763f9a4b79ad07623e0'
 csrf = CSRFProtect(app)
-freezer = Freezer(app)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
