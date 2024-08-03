@@ -45,7 +45,7 @@ def download(excel_filename):
     if os.path.exists(excel_path):
         return send_file(excel_path, as_attachment=True)
     else:
-        flash('Arquivo não encontrado', 'error')
+        flash('Arquivo nao encontrado', 'error')
         return redirect(url_for('upload'))
 
 if __name__ == '__main__':
