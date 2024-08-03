@@ -11,11 +11,11 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '04b49f7c740b5763f9a4b79ad07623e0'
 csrf = CSRFProtect(app)
 
-@app.route('/')
+@app.route("/")
 def home():
     return render_template("index.html")
 
-@app.route('/upload', methods=['GET', 'POST'])
+@app.route("/upload", methods=['GET', 'POST'])
 def upload():
     form = UploadForm()
     if form.validate_on_submit():
@@ -39,7 +39,7 @@ def upload():
 
     return render_template('upload.html', form=form)
 
-@app.route('/download/<excel_filename>', methods=['GET'])
+@app.route("/download/<excel_filename>", methods=['GET'])
 def download(excel_filename):
     excel_path = os.path.join('uploads', excel_filename)
     if os.path.exists(excel_path):
