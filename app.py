@@ -8,6 +8,10 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '04b49f7c740b5763f9a4b79ad07623e0'
 csrf = CSRFProtect(app)
 
+@app.route("/")
+def main():
+    return render_template("teste.html")
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     form = UploadForm()
